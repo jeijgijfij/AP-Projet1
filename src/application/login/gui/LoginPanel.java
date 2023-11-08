@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class LoginPanel extends JPanel {
     private DatabaseConnection databaseConnection;
@@ -19,11 +20,11 @@ public class LoginPanel extends JPanel {
 
         setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Connexion");
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel.setBounds(165, 50, 150, 25);
-        add(lblNewLabel);
+        JLabel connectionLabel = new JLabel("Connexion");
+        connectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        connectionLabel.setFont(new Font("Dialog", Font.BOLD, 25));
+        connectionLabel.setBounds(165, 50, 150, 25);
+        add(connectionLabel);
 
         BackgroundPanel logoPanel = new BackgroundPanel("res/images/criee_logo.png");
         logoPanel.setBounds(480, 0, 480, 540);
@@ -63,7 +64,35 @@ public class LoginPanel extends JPanel {
         loginButton.setBounds(165, 350, 150, 30);
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                String enteredUsername = usernameField.getText();
+                String enteredPassword = new String(passwordField.getPassword());
+                int role = 0;
 
+                if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
+                    JOptionPane.showMessageDialog(application, "Veuillez remplir tous les champs.");
+                    return;
+                }
+
+                try {
+                    role = loginManager.authenticateUser(databaseConnection, enteredUsername, enteredPassword);
+
+                    switch (role) {
+                        case 0:
+                            JOptionPane.showMessageDialog(application, "Les identifiants saisis sont invalides", "Erreur d'authentification", JOptionPane.ERROR_MESSAGE);
+                            break;
+                        case 1:
+                            // Appeler le panel vétérinaire
+                            break;
+                        case 2:
+                            // Appeler le panel Peseur Marqueur
+                            break;
+                        case 3:
+                            // Appeler le panel Directeur des ventes
+                            break;
+                    }
+                } catch (SQLException exception) {
+                    JOptionPane.showMessageDialog(application, "Erreur avec la base de données", "Erreur d'authentification", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         add(loginButton);
