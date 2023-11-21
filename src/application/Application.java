@@ -1,6 +1,10 @@
 package application;
 
 import application.login.gui.LoginPanel;
+import application.veterinarian.RedirectionPanel;
+import application.veterinarian.fishing.CreateFishing;
+import application.veterinarian.fishing.DeleteFishing;
+import application.veterinarian.fishing.FishingActions;
 import database.DatabaseConnection;
 
 import javax.swing.*;
@@ -30,5 +34,39 @@ public class Application extends JFrame {
         repaint();
     }
 
+    public void showRedirectionPanel() {
+        setSize(new Dimension(400, 400));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new RedirectionPanel(this));
+        revalidate();
+        repaint();
+    }
 
+    public void showFishingActions() {
+        setSize(new Dimension(400, 400));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new FishingActions(this));
+        revalidate();
+        repaint();
+    }
+
+    public void showCreateFishing() {
+        setSize(new Dimension(450, 350));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new CreateFishing(this, databaseConnection));
+        revalidate();
+        repaint();
+    }
+
+    public void showDeleteFishing() {
+        setSize(new Dimension(450, 350));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new DeleteFishing(this, databaseConnection));
+        revalidate();
+        repaint();
+    }
 }

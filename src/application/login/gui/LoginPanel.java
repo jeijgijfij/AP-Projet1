@@ -81,7 +81,7 @@ public class LoginPanel extends JPanel {
                             JOptionPane.showMessageDialog(application, "Les identifiants saisis sont invalides", "Erreur d'authentification", JOptionPane.ERROR_MESSAGE);
                             break;
                         case 1:
-                            // Appeler le panel vétérinaire
+                            application.showRedirectionPanel();
                             break;
                         case 2:
                             // Appeler le panel Peseur Marqueur
