@@ -1,10 +1,11 @@
 package application;
 
 import application.login.gui.LoginPanel;
-import application.veterinarian.RedirectionPanel;
-import application.veterinarian.fishing.CreateFishing;
-import application.veterinarian.fishing.DeleteFishing;
-import application.veterinarian.fishing.FishingActions;
+import application.veterinaire.RedirectionPanel;
+import application.veterinaire.bac.gui.*;
+import application.veterinaire.peche.CreerPeche;
+import application.veterinaire.peche.SupprimerPeche;
+import application.veterinaire.peche.ActionsPeche;
 import database.DatabaseConnection;
 
 import javax.swing.*;
@@ -47,7 +48,7 @@ public class Application extends JFrame {
         setSize(new Dimension(400, 400));
         setLocationRelativeTo(null);
         getContentPane().removeAll();
-        getContentPane().add(new FishingActions(this));
+        getContentPane().add(new ActionsPeche(this));
         revalidate();
         repaint();
     }
@@ -56,7 +57,7 @@ public class Application extends JFrame {
         setSize(new Dimension(450, 350));
         setLocationRelativeTo(null);
         getContentPane().removeAll();
-        getContentPane().add(new CreateFishing(this, databaseConnection));
+        getContentPane().add(new CreerPeche(this, databaseConnection));
         revalidate();
         repaint();
     }
@@ -65,7 +66,61 @@ public class Application extends JFrame {
         setSize(new Dimension(450, 350));
         setLocationRelativeTo(null);
         getContentPane().removeAll();
-        getContentPane().add(new DeleteFishing(this, databaseConnection));
+        getContentPane().add(new SupprimerPeche(this, databaseConnection));
+        revalidate();
+        repaint();
+    }
+
+    public void showCreerBac() {
+        setSize(new Dimension(1280,720));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new creerBacPanel(this, databaseConnection));
+        revalidate();
+        repaint();
+    }
+
+    public void showSelectionnerLot() {
+        setSize(new Dimension(1280,720));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new selectionnerLotPanel(this, databaseConnection));
+        revalidate();
+        repaint();
+    }
+
+    public void showSelectionnerTypeBacPanel() {
+        setSize(new Dimension(1280,720));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new selectionnerTypeBacPanel(this, databaseConnection));
+        revalidate();
+        repaint();
+    }
+
+    public void showValidationCreationBacPanel() {
+        setSize(new Dimension(1280,720));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new validationCreationBacPanel(this, databaseConnection));
+        revalidate();
+        repaint();
+    }
+
+    public void showActionsBac() {
+        setSize(new Dimension(400, 400));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new ActionsBac(this));
+        revalidate();
+        repaint();
+    }
+
+    public void showSelectionSuppressionBac() {
+        setSize(new Dimension(1280,720));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new selectionSuppressionBacPanel(this, databaseConnection));
         revalidate();
         repaint();
     }
