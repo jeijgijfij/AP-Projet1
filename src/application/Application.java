@@ -1,6 +1,8 @@
 package application;
 
 import application.login.gui.LoginPanel;
+import application.peseur_marqueur.panels.BacsPanel;
+import application.peseur_marqueur.panels.LotsPanel;
 import application.veterinaire.RedirectionPanel;
 import application.veterinaire.bac.gui.*;
 import application.veterinaire.peche.CreerPeche;
@@ -121,6 +123,24 @@ public class Application extends JFrame {
         setLocationRelativeTo(null);
         getContentPane().removeAll();
         getContentPane().add(new selectionSuppressionBacPanel(this, databaseConnection));
+        revalidate();
+        repaint();
+    }
+
+    public void showLotsPanel() {
+        setSize(new Dimension(1280,720));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new LotsPanel(this, databaseConnection));
+        revalidate();
+        repaint();
+    }
+
+    public void showBacsPanel(int index) {
+        setSize(new Dimension(1280,720));
+        setLocationRelativeTo(null);
+        getContentPane().removeAll();
+        getContentPane().add(new BacsPanel(this, databaseConnection, index));
         revalidate();
         repaint();
     }

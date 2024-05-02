@@ -84,7 +84,7 @@ public class LoginPanel extends JPanel {
                             application.showRedirectionPanel();
                             break;
                         case 2:
-                            // Appeler le panel Peseur Marqueur
+                            application.showLotsPanel();
                             break;
                         case 3:
                             // Appeler le panel Directeur des ventes
